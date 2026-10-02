@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pay Securely - UPI Payment</title>
+<style>
+:root {
+  --bg: #f3f6f4;
+  --card: #ffffff;
+  --ink: #14231c;
+  --mute: #5d6d65;
+  --line: #dbe4df;
+  --brand: #0b6b4d;
+  --brand-hover: #08553d;
+  --brand-light: #e8f5f0;
+  --ok: #0b8a4f;
+  --bad: #c2362b;
+  --shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1714;
+    --card: #16221d;
+    --ink: #e8f1ec;
+    --mute: #93a59b;
+    --line: #27372f;
+    --brand: #3ec48f;
+    --brand-hover: #32a87a;
+    --brand-light: #16362a;
+    --ok: #3ec48f;
+    --bad: #ff6b5e;
+    --shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px;
+  min-height: 100vh;
+}
+main { width: 100%; max-width: 420px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 26px 22px;
+  text-align: center;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+h1 { font-size: 1.05rem; font-weight: 600; color: var(--mute); margin: 0 0 6px; }
+.amount { font-size: 2.75rem; font-weight: 800; margin: 0 0 16px; letter-spacing: -0.5px; }
+
+.qr-box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  min-width: 230px;
+  min-height: 230px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+}
+.qr-box img {
+  display: block;
+  width: 210px;
+  height: 210px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.hint { font-size: 0.88rem; color: var(--mute); margin: 14px 0 16px; line-height: 1.4; }
+
+.upi-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  background: var(--brand-light);
+  border: 1px dashed var(--brand);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+}
+.upi-details:hover { opacity: 0.9; }
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.15s ease;
+}
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  border: 0;
+  background: var(--brand);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.btn-primary:hover { background: var(--brand-hover); }
+.btn-secondary {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+.btn-secondary:hover { background: var(--brand-light); border-color: var(--brand); }
+
+.status { margin-top: 14px; font-size: 0.88rem; color: var(--mute); }
+.link {
+  background: none;
+  border: 0;
+  color: var(--mute);
+  text-decoration: underline;
+  margin-top: 8px;
+  font-size: 0.84rem;
+  cursor: pointer;
+}
+
+.icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 16px;
+  font-size: 2.2rem;
+  color: #fff;
+}
+.ok .icon { background: var(--ok); }
+.bad .icon { background: var(--bad); }
+.result h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.result p { color: var(--mute); margin: 0 0 20px; line-height: 1.5; }
+
+/* Admin card styles */
+.admin { text-align: left; }
+.admin h2 { font-size: 1.15rem; margin: 0 0 16px; color: var(--ink); display: flex; align-items: center; justify-content: space-between; }
+.admin label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--mute); margin: 12px 0 4px; }
+.admin input[type="text"],
+.admin input[type="number"],
+.admin input[type="password"] {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+}
+.admin input:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+.file-upload-box {
+  margin-top: 6px;
+  padding: 12px;
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
+  text-align: center;
+  background: var(--bg);
+}
+.file-upload-box:hover { border-color: var(--brand); }
+.preview-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  background: var(--card);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.preview-container img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 6px;
+}
+.save-msg {
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin-top: 10px;
+  text-align: center;
+}
+.save-msg.success { color: var(--ok); }
+.save-msg.error { color: var(--bad); }
+
+/* Modal for UTR */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+}
+.modal-card {
+  background: var(--card);
+  width: 100%;
+  max-width: 360px;
+  border-radius: 16px;
+  padding: 22px;
+  text-align: left;
+}
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <!-- Main Payment View -->
+  <section class="card" id="payView">
+    <h1 id="payee">Pay</h1>
+    <p class="amount" id="amt">₹0.00</p>
+    
+    <div class="qr-box" id="qr" aria-label="Payment QR code">
+      <img id="qrImg" src="/default-qr.svg" alt="Scan to pay">
+    </div>
+
+    <div id="upiBadge" class="upi-details" title="Click to copy UPI details" hidden>
+      <span id="upiIdText">upi@id</span>
+      <span style="opacity:0.7">📋</span>
+    </div>
+
+    <p class="hint">Scan with Google Pay, PhonePe, Paytm, BHIM, or any UPI app.</p>
+    
+    <button class="btn-primary" id="scanBtn">
+      <span>⚡</span> Scan &amp; Pay in UPI App
+    </button>
+    <button class="btn-secondary" id="confirmPaidBtn">
+      <span>✓</span> I Have Completed Payment
+    </button>
+    
+    <div class="status" role="status" id="statusTxt">Preparing payment...</div>
+    <button class="link" id="cancelBtn">Cancel payment</button>
+  </section>
+
+  <!-- Result Screen (Success / Wrong Amount / Cancelled) -->
+  <section class="card result" id="resultView" hidden>
+    <div class="icon" id="rIcon"></div>
+    <h2 id="rTitle"></h2>
+    <p id="rMsg"></p>
+    <button class="btn-primary" id="retryBtn">Make another payment</button>
+  </section>
+
+  <!-- UTR / Reference Modal -->
+  <div class="modal-overlay" id="utrModal" hidden>
+    <div class="modal-card">
+      <h3 style="margin:0 0 8px">Confirm Payment</h3>
+      <p style="font-size:0.86rem; color:var(--mute); margin:0 0 14px">
+        Enter the 12-digit UPI Reference / UTR Number from your banking app (optional):
+      </p>
+      <input type="text" id="utrInput" placeholder="e.g. 402812345678" style="width:100%; padding:10px; border:1px solid var(--line); border-radius:8px; margin-bottom:14px; font:inherit;">
+      <button class="btn-primary" id="submitConfirmBtn">Submit Confirmation</button>
+      <button class="btn-secondary" id="closeModalBtn" style="margin-bottom:0">Back</button>
+    </div>
+  </div>
+
+  <!-- Admin Panel for Manual Configuration -->
+  <section class="card admin" id="adminCard">
+    <h2>
+      <span>⚙️ Settings (QR &amp; Amount)</span>
+      <button type="button" id="toggleAdminBtn" style="font-size:0.78rem; background:var(--brand-light); color:var(--brand); border:0; padding:4px 8px; border-radius:6px;">Toggle</button>
+    </h2>
+    <div id="adminBody">
+      <label for="fPass">Admin Password</label>
+      <input type="password" id="fPass" placeholder="Default: change-me">
+
+      <label for="fAmount">Amount to Pay (₹)</label>
+      <input type="number" id="fAmount" min="0.01" step="0.01" placeholder="499.00">
+
+      <label for="fName">Shop / Payee Name</label>
+      <input type="text" id="fName" placeholder="e.g. My Business">
+
+      <label for="fUpiId">UPI ID (Optional for direct mobile deep-linking)</label>
+      <input type="text" id="fUpiId" placeholder="e.g. name@okaxis or shop@upi">
+
+      <label>Change QR Image Manually</label>
+      <div class="file-upload-box">
+        <input type="file" id="fQrFile" accept="image/*" style="width:100%; font-size:0.85rem;">
+        <div style="font-size:0.8rem; color:var(--mute); margin-top:6px">Or enter an image URL / path below:</div>
+      </div>
+      <input type="text" id="fQrUrl" placeholder="e.g. https://example.com/qr.png or /default-qr.svg" style="margin-top:6px;">
+
+      <div class="preview-container" id="previewContainer">
+        <img id="qrPreview" src="/default-qr.svg" alt="Preview">
+        <div style="font-size:0.82rem; color:var(--mute);">
+          <strong>Current QR Preview</strong><br>
+          <span id="qrStatusLabel">Default placeholder</span>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="saveBtn" style="margin-top:16px;">Save QR &amp; Amount</button>
+      <div class="save-msg" id="saveMsg"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+let order = null, poller = null, ticker = null, done = false;
+let uploadedBase64 = null;
+
+// Initialize and start payment flow
+async function start() {
+  done = false;
+  clearInterval(poller);
+  clearInterval(ticker);
+  $("payView").hidden = false;
+  $("resultView").hidden = true;
+  $("statusTxt").textContent = "Preparing payment...";
+
+  try {
+    const cfg = await (await fetch("/api/config")).json();
+    $("payee").textContent = "Pay " + (cfg.payee || "Merchant");
+    $("amt").textContent = "₹" + Number(cfg.amount).toFixed(2);
+    
+    // Fill admin inputs with current config
+    $("fAmount").value = cfg.amount;
+    $("fName").value = cfg.payee || "";
+    $("fUpiId").value = cfg.upiId || "";
+    $("fQrUrl").value = cfg.qrImage || "";
+    $("qrPreview").src = cfg.qrImage || "/default-qr.svg";
+
+    const r = await fetch("/api/order", { method: "POST" });
+    order = await r.json();
+
+    if (!order.orderId) throw new Error("Order creation failed");
+
+    $("qrImg").src = order.qrImage || cfg.qrImage || "/default-qr.svg";
+
+    if (order.upiId) {
+      $("upiBadge").hidden = false;
+      $("upiIdText").textContent = order.upiId;
+    } else {
+      $("upiBadge").hidden = true;
+    }
+
+    $("scanBtn").disabled = !order.upi;
+    if (!order.upi) {
+      $("scanBtn").title = "Add a UPI ID in settings to enable direct mobile app opening";
+    }
+
+    poller = setInterval(check, 2500);
+    ticker = setInterval(tick, 1000);
+    tick();
+  } catch (e) {
+    console.error(e);
+    $("statusTxt").textContent = "Could not start payment. Please refresh.";
+  }
+}
+
+function tick() {
+  if (!order || !order.expiresAt) return;
+  const s = Math.max(0, Math.round((order.expiresAt - Date.now()) / 1000));
+  $("statusTxt").textContent = "Waiting for payment... " + Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") + " left";
+  if (s === 0) check();
+}
+
+async function check() {
+  if (done || !order) return;
+  try {
+    const d = await (await fetch("/api/status?order=" + encodeURIComponent(order.orderId))).json();
+    if (d.status === "SUCCESS") {
+      finish("ok", "✓", "Payment Successful", "₹" + d.amount.toFixed(2) + " received. Thank you!");
+    } else if (d.status === "WRONG") {
+      finish("bad", "!", "Paid Wrong Amount", "You paid ₹" + d.paidAmount.toFixed(2) + " but ₹" + d.amount.toFixed(2) + " was required. Please contact support.");
+    } else if (d.status === "CANCELLED") {
+      finish("bad", "✕", "Payment Cancelled", "No payment was confirmed.");
+    }
+  } catch (e) {}
+}
+
+function finish(cls, icon, title, msg) {
+  if (done) return;
+  done = true;
+  clearInterval(poller);
+  clearInterval(ticker);
+  $("payView").hidden = true;
+  $("utrModal").hidden = true;
+  const rv = $("resultView");
+  rv.hidden = false;
+  rv.className = "card result " + cls;
+  $("rIcon").textContent = icon;
+  $("rTitle").textContent = title;
+  $("rMsg").textContent = msg;
+}
+
+// Mobile Scan & Pay
+$("scanBtn").onclick = () => {
+  if (order && order.upi) {
+    location.href = order.upi;
+  } else {
+    alert("Please scan the QR code using any UPI app on your phone, or add your UPI ID in Settings to enable direct app launch.");
+  }
+};
+
+// Copy UPI ID when badge clicked
+$("upiBadge").onclick = () => {
+  const text = $("upiIdText").textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = $("upiBadge").innerHTML;
+    $("upiBadge").innerHTML = "<span>Copied to clipboard!</span> <span>✓</span>";
+    setTimeout(() => { $("upiBadge").innerHTML = orig; }, 1500);
+  });
+};
+
+// Customer manual payment confirmation
+$("confirmPaidBtn").onclick = () => {
+  $("utrModal").hidden = false;
+};
+$("closeModalBtn").onclick = () => {
+  $("utrModal").hidden = true;
+};
+$("submitConfirmBtn").onclick = async () => {
+  const utr = $("utrInput").value.trim();
+  $("submitConfirmBtn").disabled = true;
+  $("submitConfirmBtn").textContent = "Verifying...";
+  try {
+    const r = await fetch("/api/confirm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ order: order.orderId, utr })
+    });
+    const d = await r.json();
+    if (d.success) {
+      finish("ok", "✓", "Payment Confirmed", "Thank you! We received your payment confirmation of ₹" + d.amount.toFixed(2) + (utr ? ` (UTR: ${utr})` : "") + ".");
+    } else {
+      alert("Error confirming payment. Please try again.");
+    }
+  } catch (err) {
+    alert("Connection error. Please try again.");
+  } finally {
+    $("submitConfirmBtn").disabled = false;
+    $("submitConfirmBtn").textContent = "Submit Confirmation";
+  }
+};
+
+$("cancelBtn").onclick = async () => {
+  if (!order) return;
+  await fetch("/api/cancel", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ order: order.orderId })
+  });
+  check();
+};
+
+$("retryBtn").onclick = start;
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) check();
+});
+
+// Admin section logic
+$("fQrFile").onchange = e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    uploadedBase64 = ev.target.result;
+    $("qrPreview").src = uploadedBase64;
+    $("qrStatusLabel").textContent = "Selected: " + file.name;
+  };
+  reader.readAsDataURL(file);
+};
+
+$("fQrUrl").oninput = () => {
+  if ($("fQrUrl").value.trim()) {
+    uploadedBase64 = null; // Prioritize typed URL if changed
+    $("qrPreview").src = $("fQrUrl").value.trim();
+    $("qrStatusLabel").textContent = "URL preview";
+  }
+};
+
+$("saveBtn").onclick = async () => {
+  $("saveMsg").textContent = "Saving...";
+  $("saveMsg").className = "save-msg";
+  $("saveBtn").disabled = true;
+
+  const payload = {
+    password: $("fPass").value || "change-me",
+    amount: $("fAmount").value,
+    payee: $("fName").value,
+    upiId: $("fUpiId").value,
+    qrImageUrl: $("fQrUrl").value,
+    qrImageBase64: uploadedBase64,
+    mode: "manual"
+  };
+
+  try {
+    const r = await fetch("/api/admin", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (r.ok) {
+      $("saveMsg").textContent = "Saved successfully! Updating payment view...";
+      $("saveMsg").className = "save-msg success";
+      uploadedBase64 = null;
+      $("fQrFile").value = "";
+      setTimeout(() => {
+        start();
+        $("saveMsg").textContent = "Saved. Ready for new payments.";
+      }, 1000);
+    } else {
+      $("saveMsg").textContent = d.error || "Save failed. Check password or amount.";
+      $("saveMsg").className = "save-msg error";
+    }
+  } catch (err) {
+    $("saveMsg").textContent = "Error saving settings: " + err.message;
+    $("saveMsg").className = "save-msg error";
+  } finally {
+    $("saveBtn").disabled = false;
+  }
+};
+
+// Toggle admin visibility
+$("toggleAdminBtn").onclick = () => {
+  const b = $("adminBody");
+  b.hidden = !b.hidden;
+};
+
+// If URL has ?admin, make sure admin is open and highlighted
+if (new URLSearchParams(location.search).has("admin")) {
+  $("adminBody").hidden = false;
+  $("adminCard").scrollIntoView({ behavior: "smooth" });
+}
+
+start();
+</script>
+</body>
+</html>
