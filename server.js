@@ -8,7 +8,7 @@ const {
   RZP_KEY_ID,
   RZP_KEY_SECRET,
   WEBHOOK_SECRET,
-  ADMIN_PASSWORD = "change-me",
+  ADMIN_PASSWORD = "MySecurePass@2026",
   PORT = 3000
 } = process.env;
 
