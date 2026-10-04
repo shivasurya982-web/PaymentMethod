@@ -196,7 +196,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        registerReceiver(uiUpdateReceiver, IntentFilter(ACTION_UPDATE_UI))
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(uiUpdateReceiver, IntentFilter(ACTION_UPDATE_UI), Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(uiUpdateReceiver, IntentFilter(ACTION_UPDATE_UI))
+        }
         updateDashboard()
     }
 
