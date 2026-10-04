@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.example.notifyforwarder.app-merged_res-32:/layout_item_transaction.xml.flat",
+        "source": "com.example.notifyforwarder.app-main-33:/layout/item_transaction.xml"
+    },
+    {
+        "merged": "com.example.notifyforwarder.app-merged_res-32:/layout_activity_main.xml.flat",
+        "source": "com.example.notifyforwarder.app-main-33:/layout/activity_main.xml"
+    }
+]

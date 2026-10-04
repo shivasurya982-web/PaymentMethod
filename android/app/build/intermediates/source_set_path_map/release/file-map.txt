@@ -1,0 +1,35 @@
+com.example.notifyforwarder.app-core-ktx-1.12.0-0 C:\Users\newadmin\.gradle\caches\transforms-3\07e481bc9b5f0b9e87a69f07e257dc15\transformed\core-ktx-1.12.0\res
+com.example.notifyforwarder.app-viewpager2-1.1.0-beta02-1 C:\Users\newadmin\.gradle\caches\transforms-3\11da5bacf82997531b7780b18447dc93\transformed\viewpager2-1.1.0-beta02\res
+com.example.notifyforwarder.app-emoji2-views-helper-1.2.0-2 C:\Users\newadmin\.gradle\caches\transforms-3\1869f397754c79953268ed24c21c1aaa\transformed\emoji2-views-helper-1.2.0\res
+com.example.notifyforwarder.app-core-1.12.0-3 C:\Users\newadmin\.gradle\caches\transforms-3\217cd4443c329c3de6d6b6409afab4f6\transformed\core-1.12.0\res
+com.example.notifyforwarder.app-savedstate-1.2.1-4 C:\Users\newadmin\.gradle\caches\transforms-3\2c4e88cd1ff65d45858d3fb7fa907e4c\transformed\savedstate-1.2.1\res
+com.example.notifyforwarder.app-emoji2-1.2.0-5 C:\Users\newadmin\.gradle\caches\transforms-3\3500ab73a4dc02317d7c308f4cc31c1b\transformed\emoji2-1.2.0\res
+com.example.notifyforwarder.app-lifecycle-livedata-core-2.6.1-6 C:\Users\newadmin\.gradle\caches\transforms-3\3ae7442632a0c63d8e2038d54972fc80\transformed\lifecycle-livedata-core-2.6.1\res
+com.example.notifyforwarder.app-customview-poolingcontainer-1.0.0-7 C:\Users\newadmin\.gradle\caches\transforms-3\47e125ed75a6a0e4a4e00d1fcc06d062\transformed\customview-poolingcontainer-1.0.0\res
+com.example.notifyforwarder.app-cardview-1.0.0-8 C:\Users\newadmin\.gradle\caches\transforms-3\4c80187ac357330d7d463eea73be6f66\transformed\cardview-1.0.0\res
+com.example.notifyforwarder.app-startup-runtime-1.1.1-9 C:\Users\newadmin\.gradle\caches\transforms-3\4cfb04d3fe8e43a1fa5dba8261f06c9a\transformed\startup-runtime-1.1.1\res
+com.example.notifyforwarder.app-appcompat-resources-1.6.1-10 C:\Users\newadmin\.gradle\caches\transforms-3\5727e9b967dd07fa05cd026d63cc14f8\transformed\appcompat-resources-1.6.1\res
+com.example.notifyforwarder.app-constraintlayout-2.1.4-11 C:\Users\newadmin\.gradle\caches\transforms-3\5b1e847eb52da651a87fd4b6c66d222b\transformed\constraintlayout-2.1.4\res
+com.example.notifyforwarder.app-lifecycle-runtime-2.6.1-12 C:\Users\newadmin\.gradle\caches\transforms-3\640c23382b3c6bff2f64782b38191508\transformed\lifecycle-runtime-2.6.1\res
+com.example.notifyforwarder.app-lifecycle-process-2.6.1-13 C:\Users\newadmin\.gradle\caches\transforms-3\67962882c4107b59421cb12363728365\transformed\lifecycle-process-2.6.1\res
+com.example.notifyforwarder.app-recyclerview-1.3.2-14 C:\Users\newadmin\.gradle\caches\transforms-3\6ec5ce5e8eb8ff35b46ba0f2081beae5\transformed\recyclerview-1.3.2\res
+com.example.notifyforwarder.app-lifecycle-livedata-2.6.1-15 C:\Users\newadmin\.gradle\caches\transforms-3\71c4c5ab9d2d514ef8394fd755257331\transformed\lifecycle-livedata-2.6.1\res
+com.example.notifyforwarder.app-profileinstaller-1.3.0-16 C:\Users\newadmin\.gradle\caches\transforms-3\764738c037a5a4f530f4f25b536a10c2\transformed\profileinstaller-1.3.0\res
+com.example.notifyforwarder.app-lifecycle-viewmodel-2.6.1-17 C:\Users\newadmin\.gradle\caches\transforms-3\93630bd901bfdf1cf0c8f02fac1fef16\transformed\lifecycle-viewmodel-2.6.1\res
+com.example.notifyforwarder.app-transition-1.2.0-18 C:\Users\newadmin\.gradle\caches\transforms-3\97136f5be63e38c8b6dd015db55acef9\transformed\transition-1.2.0\res
+com.example.notifyforwarder.app-appcompat-1.6.1-19 C:\Users\newadmin\.gradle\caches\transforms-3\a41e6a68a8051e59a1bea027c058f81a\transformed\appcompat-1.6.1\res
+com.example.notifyforwarder.app-material-1.11.0-20 C:\Users\newadmin\.gradle\caches\transforms-3\bec7de6f5493746bd6b85bdfc260f89d\transformed\material-1.11.0\res
+com.example.notifyforwarder.app-activity-1.8.0-21 C:\Users\newadmin\.gradle\caches\transforms-3\c477ff3514492a57811df04dbcaf2a51\transformed\activity-1.8.0\res
+com.example.notifyforwarder.app-lifecycle-viewmodel-savedstate-2.6.1-22 C:\Users\newadmin\.gradle\caches\transforms-3\c6cd516b5eceffd8f05aebe7e4d41aa7\transformed\lifecycle-viewmodel-savedstate-2.6.1\res
+com.example.notifyforwarder.app-coordinatorlayout-1.1.0-23 C:\Users\newadmin\.gradle\caches\transforms-3\cbfbed18e8fb072229b6cb1e3c058e53\transformed\coordinatorlayout-1.1.0\res
+com.example.notifyforwarder.app-drawerlayout-1.1.1-24 C:\Users\newadmin\.gradle\caches\transforms-3\d66341d948861cd86eb0630c082495b4\transformed\drawerlayout-1.1.1\res
+com.example.notifyforwarder.app-fragment-1.3.6-25 C:\Users\newadmin\.gradle\caches\transforms-3\db000db764df3c3a9e600e5c06256856\transformed\fragment-1.3.6\res
+com.example.notifyforwarder.app-core-runtime-2.2.0-26 C:\Users\newadmin\.gradle\caches\transforms-3\f827a4d7a12079b61fc63ffe1c43b1ee\transformed\core-runtime-2.2.0\res
+com.example.notifyforwarder.app-annotation-experimental-1.3.0-27 C:\Users\newadmin\.gradle\caches\transforms-3\fea7d0ec5206f98222853e6d19bc112a\transformed\annotation-experimental-1.3.0\res
+com.example.notifyforwarder.app-pngs-28 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\build\generated\res\pngs\release
+com.example.notifyforwarder.app-resValues-29 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\build\generated\res\resValues\release
+com.example.notifyforwarder.app-packageReleaseResources-30 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.example.notifyforwarder.app-packageReleaseResources-31 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.example.notifyforwarder.app-merged_res-32 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\build\intermediates\merged_res\release
+com.example.notifyforwarder.app-main-33 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\src\main\res
+com.example.notifyforwarder.app-release-34 C:\Users\newadmin\Downloads\Payment Notify Assistent\android\app\src\release\res

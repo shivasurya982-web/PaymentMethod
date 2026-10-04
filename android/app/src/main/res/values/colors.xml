@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#0F172A</color>
+    <color name="primary_dark">#020617</color>
+    <color name="accent">#2563EB</color>
+    <color name="bg_main">#F8FAFC</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_muted">#94A3B8</color>
+
+    <!-- Status Colors -->
+    <color name="success_green">#16A34A</color>
+    <color name="success_bg">#DCFCE7</color>
+    <color name="warning_red">#DC2626</color>
+    <color name="warning_bg">#FEE2E2</color>
+    <color name="neutral_gray">#475569</color>
+    <color name="neutral_bg">#F1F5F9</color>
+    <color name="border_color">#E2E8F0</color>
+</resources>
