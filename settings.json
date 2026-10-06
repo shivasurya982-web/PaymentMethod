@@ -1,7 +1,7 @@
 {
   "amount": 499,
   "payee": "SM Fancy",
-  "qrImage": "upi://pay?pa=shivasurya982@okicici&pn=surya&aid=uGICAgKD1l8i2Qg",
-  "upiId": "shivasurya982@okicici",
+  "qrImage": "upi://pay?pa=shivasurya982@oksbi&pn=surya&aid=uGICAgKD1l8i2Qg",
+  "upiId": "shivasurya982@oksbi",
   "mode": "manual"
 }
